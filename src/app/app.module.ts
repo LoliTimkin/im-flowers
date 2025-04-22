@@ -9,6 +9,7 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { MainComponent } from './views/main/main.component';
 import {HttpClientModule} from "@angular/common/http";
 
+
 @NgModule({
   declarations: [
     AppComponent,
