@@ -66,6 +66,8 @@
         .catalog-filter {
           border-radius: 5px;
           margin-bottom: 12px;
+          font-size: 16px;
+          color: $grey-text-color;
 
           .catalog-filter-head {
             border-radius: 5px;
@@ -82,6 +84,22 @@
             display: none;
             border: 1px solid #b6d5b9;
             border-radius: 0 0 5px 5px;
+
+            .catalog-filter-checkbox {
+              display: flex;
+              align-items: baseline;
+              margin-bottom: 19px;
+              line-height: 130%;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+
+              input {
+                margin-right: 10px;
+              }
+
+            }
           }
 
         }
