@@ -4,6 +4,7 @@ import {PasswordRepeatDirective} from "./directives/password-repeat.directive";
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import { CategoryFilterComponent } from './components/category-filter/category-filter.component';
 
 
 
@@ -12,7 +13,8 @@ import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     PasswordRepeatDirective,
-    ProductCardComponent
+    ProductCardComponent,
+    CategoryFilterComponent
   ],
   imports: [
     CommonModule,
