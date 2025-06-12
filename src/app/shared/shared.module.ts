@@ -23,7 +23,8 @@ import { CategoryFilterComponent } from './components/category-filter/category-f
   ],
   exports: [
     PasswordRepeatDirective,
-    ProductCardComponent
+    ProductCardComponent,
+    CategoryFilterComponent
   ]
 })
 export class SharedModule { }
