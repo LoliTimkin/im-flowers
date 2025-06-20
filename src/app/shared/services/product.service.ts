@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {CategoryType} from "../../../types/category.type";
 import {environment} from "../../../environments/environment";
 import {ProductType} from "../../../types/product";
+import {ActiveParamsType} from "../../../types/active-params-type";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ export class ProductService {
     return this.http.get<ProductType[]>(environment.api + "products/best")
   }
 
-  getProducts (): Observable<{totalCount: number, pages: number, items: ProductType[]}> {
-    return this.http.get<{totalCount: number, pages: number, items: ProductType[]}>(environment.api + "products")
+  getProducts (params: ActiveParamsType): Observable<{totalCount: number, pages: number, items: ProductType[]}> {
+    return this.http.get<{totalCount: number, pages: number, items: ProductType[]}>(environment.api + "products", {
+      params: params
+    })
   }
 }

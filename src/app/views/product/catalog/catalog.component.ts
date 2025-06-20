@@ -19,7 +19,14 @@ export class CatalogComponent implements OnInit {
   categoriesWithTypes: CategoryWithTypeType[] = [];
   activeParams: ActiveParamsType = {types:[]}
   appliedFilters: AppliedFilterType[] = [];
-  sortingOpen = false
+  sortingOpen = false;
+  sortingOptions: {name: string, value: string}[] = [
+    {name: 'От А до Я', value: 'az-asc'},
+    {name: 'От Я до А', value: 'az-desc'},
+    {name: 'По возрастанию цены', value: 'price-asc'},
+    {name: 'По убыванию цены', value: 'price-desc'},
+  ]
+  pages: number[] = [];
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
@@ -72,13 +79,17 @@ export class CatalogComponent implements OnInit {
               urlParam:  'diameterTo'
             })
           }
+
+          this.productService.getProducts(this.activeParams)
+            .subscribe((data: {totalCount: number, pages: number, items: ProductType[]}) => {
+              this.pages = [];
+              for (let i = 1; i <= data.pages ; i++) {
+                this.pages.push(i)
+              }
+              this.products = data.items;
+            })
         })
       })
-
-    this.productService.getProducts()
-      .subscribe((data: {totalCount: number, pages: number, items: ProductType[]}) => {
-        this.products = data.items;
-    })
 
   }
   removeAppliedFilter(appliedFilter: AppliedFilterType ) {
@@ -90,8 +101,46 @@ export class CatalogComponent implements OnInit {
       this.activeParams.types = this.activeParams.types.filter(item => item !== appliedFilter.urlParam);
     }
 
+    this.activeParams.page = 1;
+
     this.router.navigate(["/catalog"], {
       queryParams: this.activeParams
     })
+  }
+
+  toogleSorting() {
+    this.sortingOpen = !this.sortingOpen
+  }
+
+  sort(value: string) {
+    this.activeParams.sort = value;
+    this.router.navigate(["/catalog"], {
+      queryParams: this.activeParams
+    })
+  }
+
+  openPage(page: number) {
+    this.activeParams.page = page;
+    this.router.navigate(["/catalog"], {
+      queryParams: this.activeParams
+    })
+  }
+
+  openPrevPage() {
+    if (this.activeParams.page && this.activeParams.page > 1) {
+      this.activeParams.page--;
+      this.router.navigate(["/catalog"], {
+        queryParams: this.activeParams
+      })
+    }
+  }
+
+  openNextPage() {
+    if (this.activeParams.page && this.activeParams.page < this.pages.length) {
+      this.activeParams.page++;
+      this.router.navigate(["/catalog"], {
+        queryParams: this.activeParams
+      })
+    }
   }
 }
