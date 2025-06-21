@@ -7,6 +7,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {CategoryWithTypeType} from "../../../../types/category-with-type";
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
 
   isLogged: boolean = false;
-  @Input()  categories: CategoryType[] = [];
+  @Input()  categories: CategoryWithTypeType[] = [];
 
   constructor(private authService: AuthService,
               private _snackBar : MatSnackBar,
