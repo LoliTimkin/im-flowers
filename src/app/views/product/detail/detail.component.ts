@@ -12,6 +12,7 @@ import {environment} from "../../../../environments/environment";
 })
 export class DetailComponent implements OnInit {
 
+  count: number = 1;
   recommendedProducts: ProductType[] = [];
   product!: ProductType;
   serverStaticPath: string = environment.serverStaticPath;
@@ -57,6 +58,11 @@ export class DetailComponent implements OnInit {
   }
 
   updateCount(value: number) {
-    console.log(value)
+    this.count = value;
   }
+
+  addToCart(): void {
+    alert('Добавлено в корзину ' + this.count)
+  }
+
 }
