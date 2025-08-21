@@ -168,3 +168,31 @@
     }
   }
 }
+
+.order-popup {
+
+  position: relative;
+  padding: 100px 70px 220px;
+  text-align: center;
+  color: $green-text-color;
+  background-image: url("../../../../assets/images/page/order-image.png");
+  background-position: bottom center;
+  background-repeat: no-repeat;
+
+  .order-popup-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+  }
+
+  .order-popup-title {
+    @include head-lora-32;
+    margin-bottom: 40px;
+  }
+
+  .order-popup-content div {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+}
