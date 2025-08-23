@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DeliveryType} from "../../../../types/delivery.type";
+import {PaymentType} from "../../../../types/payment.type";
 
 @Component({
   selector: 'app-info',
@@ -12,4 +14,6 @@ export class InfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+    protected readonly DeliveryType = DeliveryType;
+    protected readonly PaymentType = PaymentType;
 }
