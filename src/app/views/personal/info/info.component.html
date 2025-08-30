@@ -5,7 +5,7 @@
       <div class="personal-page active">Личные данные</div>
       <div class="personal-page" routerLink="/orders">Ваши заказы</div>
     </div>
-    <div class="data-form" [formGroup]="orderForm">
+    <div class="data-form" [formGroup]="userInfoForm">
       <div class="data-form-block">
         <div class="data-form-label">
           Личные данные
@@ -15,24 +15,24 @@
         </div>
         <div class="data-form-inputs personal-data-inputs">
           <input type="text" class="input" placeholder="Фамилия"
-                 [ngStyle]="{'border-color': orderForm.get('lastName')?.invalid && (orderForm.get('lastName')?.touched ||
-                   orderForm.get('lastName')?.dirty) ? 'red' : ''}"
+                 [ngStyle]="{'border-color': userInfoForm.get('lastName')?.invalid && (userInfoForm.get('lastName')?.touched ||
+                   userInfoForm.get('lastName')?.dirty) ? 'red' : ''}"
                  formControlName="lastName">
           <input type="text" class="input" placeholder="Имя"
-                 [ngStyle]="{'border-color': orderForm.get('firstName')?.invalid && (orderForm.get('firstName')?.touched ||
-                   orderForm.get('firstName')?.dirty) ? 'red' : ''}"
+                 [ngStyle]="{'border-color': userInfoForm.get('firstName')?.invalid && (userInfoForm.get('firstName')?.touched ||
+                   userInfoForm.get('firstName')?.dirty) ? 'red' : ''}"
                  formControlName="firstName">
           <input type="text" class="input" placeholder="Отчество"
-                 [ngStyle]="{'border-color': orderForm.get('fatherName')?.invalid && (orderForm.get('fatherName')?.touched ||
-                   orderForm.get('fatherName')?.dirty) ? 'red' : ''}"
+                 [ngStyle]="{'border-color': userInfoForm.get('fatherName')?.invalid && (userInfoForm.get('fatherName')?.touched ||
+                   userInfoForm.get('fatherName')?.dirty) ? 'red' : ''}"
                  formControlName="fatherName">
           <input type="text" class="input" placeholder="Телефон"
-                 [ngStyle]="{'border-color': orderForm.get('phone')?.invalid && (orderForm.get('phone')?.touched ||
-                   orderForm.get('phone')?.dirty) ? 'red' : ''}"
+                 [ngStyle]="{'border-color': userInfoForm.get('phone')?.invalid && (userInfoForm.get('phone')?.touched ||
+                   userInfoForm.get('phone')?.dirty) ? 'red' : ''}"
                  formControlName="phone">
           <input type="text" class="input" placeholder="E-mail"
-                 [ngStyle]="{'border-color': orderForm.get('email')?.invalid && (orderForm.get('email')?.touched ||
-                   orderForm.get('email')?.dirty) ? 'red' : ''}"
+                 [ngStyle]="{'border-color': userInfoForm.get('email')?.invalid && (userInfoForm.get('email')?.touched ||
+                   userInfoForm.get('email')?.dirty) ? 'red' : ''}"
                  formControlName="email">
         </div>
       </div>
@@ -42,20 +42,20 @@
         </div>
         <div class="data-form-inputs address-inputs">
           <input type="text" class="input street" placeholder="Улица"
-                 [ngStyle]="{'border-color': orderForm.get('street')?.invalid && (orderForm.get('street')?.touched ||
-                   orderForm.get('street')?.dirty) ? 'red' : ''}"
+                 [ngStyle]="{'border-color': userInfoForm.get('street')?.invalid && (userInfoForm.get('street')?.touched ||
+                   userInfoForm.get('street')?.dirty) ? 'red' : ''}"
                  formControlName="street">
           <input type="text" class="input house" placeholder="№ Дома"
-                 [ngStyle]="{'border-color': orderForm.get('house')?.invalid && (orderForm.get('house')?.touched ||
-                   orderForm.get('house')?.dirty) ? 'red' : ''}"
+                 [ngStyle]="{'border-color': userInfoForm.get('house')?.invalid && (userInfoForm.get('house')?.touched ||
+                   userInfoForm.get('house')?.dirty) ? 'red' : ''}"
                  formControlName="house">
           <input type="text" class="input entrance" placeholder="Подъезд"
-                 [ngStyle]="{'border-color': orderForm.get('entrance')?.invalid && (orderForm.get('entrance')?.touched ||
-                   orderForm.get('entrance')?.dirty) ? 'red' : ''}"
+                 [ngStyle]="{'border-color': userInfoForm.get('entrance')?.invalid && (userInfoForm.get('entrance')?.touched ||
+                   userInfoForm.get('entrance')?.dirty) ? 'red' : ''}"
                  formControlName="entrance">
           <input type="text" class="input apartment" placeholder="№ Квартиры"
-                 [ngStyle]="{'border-color': orderForm.get('apartment')?.invalid && (orderForm.get('apartment')?.touched ||
-                   orderForm.get('apartment')?.dirty) ? 'red' : ''}"
+                 [ngStyle]="{'border-color': userInfoForm.get('apartment')?.invalid && (userInfoForm.get('apartment')?.touched ||
+                   userInfoForm.get('apartment')?.dirty) ? 'red' : ''}"
                  formControlName="apartment">
         </div>
       </div>
@@ -93,7 +93,8 @@
         </div>
       </div>
 
-      <button class="button">Сохранить</button>
+      <button class="button" [disabled]="!(userInfoForm.dirty && userInfoForm.valid)" (click)="updateUserInfo()">
+        Сохранить</button>
     </div>
 
   </div>

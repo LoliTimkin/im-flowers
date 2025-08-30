@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DeliveryType} from "../../../../types/delivery.type";
 import {PaymentType} from "../../../../types/payment.type";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-info',
@@ -9,11 +10,36 @@ import {PaymentType} from "../../../../types/payment.type";
 })
 export class InfoComponent implements OnInit {
 
-  constructor() { }
+  deliveryType: DeliveryType = DeliveryType.delivery
+
+  userInfoForm =
+    this.fb.group({
+        firstName: [''],
+        lastName: [''],
+        phone: [''],
+        fatherName: [''],
+        paymentType: [PaymentType.cashToCourier],
+        email: [''],
+        street: [''],
+        house: [''],
+        entrance: [''],
+        apartment: [''],
+      }
+    )
+
+  deliveryTypes = DeliveryType
+  paymentTypes = PaymentType
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
-    protected readonly DeliveryType = DeliveryType;
-    protected readonly PaymentType = PaymentType;
+  changeDeliveryType(deliveryType: DeliveryType) {
+    this.deliveryType = deliveryType
+  }
+
+  updateUserInfo() {
+
+  }
 }
