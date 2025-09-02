@@ -21,4 +21,9 @@ export class OrderService {
 
   }
 
+  getOrders(): Observable<OrderType[] | DefaultResponseType> {
+    return this.http.get<OrderType[] | DefaultResponseType>(environment.api + "orders")
+
+  }
+
 }
