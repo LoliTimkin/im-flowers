@@ -1,7 +1,7 @@
 import {OrderStatusType} from "../../../types/order-status.type";
 
 export class OrderStatusUtil {
-  static getStatusAndColor(status: OrderStatusType): {name: string, color: string} {
+  static getStatusAndColor(status: OrderStatusType | undefined | null): {name: string, color: string} {
     let name = 'Новый';
     let color = '#456F49';
 

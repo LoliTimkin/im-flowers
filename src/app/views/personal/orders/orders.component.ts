@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {OrderService} from "../../../shared/services/order.service";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 import {OrderType} from "../../../../types/order.type";
+import {map} from "rxjs";
+import {OrderStatusUtil} from "../../../shared/ utils/order-status.util";
 
 @Component({
   selector: 'app-orders',
@@ -21,7 +23,13 @@ export class OrdersComponent implements OnInit {
         if((data as DefaultResponseType).error !== undefined) {
           throw new Error((data as DefaultResponseType).message);
         }
-        this.orders = data as OrderType[]
+        this.orders = (data as OrderType[]).map(item => {
+
+          const status = OrderStatusUtil.getStatusAndColor(item.status)
+          item.statusRus = status.name;
+          item.color = status.color;
+          return item;
+        });
       })
   }
 
