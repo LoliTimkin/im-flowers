@@ -9,6 +9,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {CategoryWithTypeType} from "../../../../types/category-with-type";
 import {CartService} from "../../services/cart.service";
+import {ProductService} from "../../services/product.service";
+import {ProductType} from "../../../../types/product";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-header',
@@ -17,6 +20,9 @@ import {CartService} from "../../services/cart.service";
 })
 export class HeaderComponent implements OnInit {
 
+  serverStaticPath: string = environment.serverStaticPath;
+  searchValue: string = '' ;
+  products: ProductType[] = [];
   count: number = 0;
   isLogged: boolean = false;
   @Input()  categories: CategoryWithTypeType[] = [];
@@ -24,6 +30,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService,
               private _snackBar : MatSnackBar,
               private cartService: CartService,
+              private productService: ProductService,
               private router: Router) {
     this.isLogged = this.authService.getIsLoggedIn();
   }
@@ -63,5 +70,26 @@ export class HeaderComponent implements OnInit {
     this.authService.userId = null;
     this._snackBar.open('Вы успешно вышли из системы');
     this.router.navigate(['/']);
+  }
+
+  changeSearchValue(newValue: string): void {
+    this.searchValue = newValue;
+    if(this.searchValue && this.searchValue.length > 2) {
+
+      this.productService.searchProducts(this.searchValue)
+        .subscribe({
+          next: (data: ProductType[]) => {
+            this.products = data;
+          }
+        })
+    } else {
+      this.products = [];
+    }
+  }
+
+  selectProduct(product: ProductType): void {
+    this.router.navigate(['/product/' + product.url]);
+    this.searchValue = '';
+    this.products = [];
   }
 }
