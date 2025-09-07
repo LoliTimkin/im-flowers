@@ -14,7 +14,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {SharedModule} from "./shared/shared.module";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -34,6 +34,7 @@ import {FormsModule} from "@angular/forms";
     MatSnackBarModule,
     BrowserAnimationsModule,
     MatMenuModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [
