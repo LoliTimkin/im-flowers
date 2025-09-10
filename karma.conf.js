@@ -38,6 +38,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    //browsers: ['ChromeHeadless', 'yandex-browser'],
     singleRun: false,
     restartOnFileChange: true
   });
