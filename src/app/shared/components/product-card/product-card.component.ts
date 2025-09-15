@@ -17,6 +17,7 @@ import {Router} from "@angular/router";
 })
 export class ProductCardComponent implements OnInit {
 
+  isLogged: boolean = false;
   @Input() product!: ProductType;
   serverStaticPath: string = environment.serverStaticPath;
   count: number = 1;
@@ -27,7 +28,9 @@ export class ProductCardComponent implements OnInit {
               private authService: AuthService,
               private _snackBar: MatSnackBar,
               private favoriteService: FavoriteService,
-              private router: Router) { }
+              private router: Router) {
+    this.isLogged = this.authService.getIsLoggedIn();
+  }
 
   ngOnInit(): void {
     if(this.countInCart && this.countInCart > 0) {
